@@ -21,9 +21,11 @@
     -p 1880:1880 \
     -p 2048:2048 \
     -p 2049:2049 \
+    -p 3456:3456 \
     -v node_red_data:/data \
     -v node_red_certs:/certs \
     --net host \
+    --tz=local \
     --name node-red \
     -h node-red \
     nodered/node-red:latest-12
@@ -49,6 +51,8 @@
   firewall-cmd --permanent --zone=public --add-port=2048/tcp
   # node-red - plugin - ccu - XMLRPC
   firewall-cmd --permanent --zone=public --add-port=2049/tcp
+  # node-red - plugin - alexa
+  firewall-cmd --permanent --zone=public --add-port=3456/tcp
   firewall-cmd --reload
   ```
 
