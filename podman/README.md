@@ -6,6 +6,6 @@
 vi /etc/containers/registries.conf
 ```
 
-``` toml
+``` text
 unqualified-search-registries = ['docker.io', 'quay.io', 'registry.centos.org', 'registry.fedoraproject.org', 'registry.access.redhat.com']
 ```

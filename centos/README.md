@@ -22,7 +22,7 @@ dnf -y install dnf-automatic
 vi /etc/dnf/automatic.conf
 ```
 
-``` toml
+``` text
 [commands]
 upgrade_type = security
 apply_updates = yes

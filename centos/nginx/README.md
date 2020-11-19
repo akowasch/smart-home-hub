@@ -29,19 +29,38 @@
 - Copy ssl certificates (see [ACME](../acme) section)
 
   ``` shell
-  acme.sh -i \
-  -d '<YOUR_DOMAIN>' \
-  --key-file /etc/nginx/key.pem  \
-  --fullchain-file /etc/nginx/cert.pem \
-  --reloadcmd 'service nginx force-reload'
+  acme.sh -i -d '<YOUR_DOMAIN>' \
+    --key-file /etc/nginx/key.pem \
+    --fullchain-file /etc/nginx/cert.pem \
+    --reloadcmd 'service nginx force-reload'
   ```
 
-- Configure NGINX (see <https://nginx.org/en/docs/>)
+- Generate Diffie-Hellman parameters
+
+  ``` shell
+  openssl dhparam -out /etc/nginx/dhparam.pem 2048
+  ```
+
+- Allow NGINX to make network connections
+
+  ``` shell
+  setsebool -P httpd_can_network_connect 1
+  ```
+
+- Delete NGINX default config
 
   ``` shell
   rm -rf /etc/nginx/conf.d/default.conf
-  openssl dhparam -out /etc/nginx/dhparam.pem 2048
-  setsebool -P httpd_can_network_connect 1
+  ```
+
+- Copy NGINX configs (see <https://nginx.org/en/docs/>)
+
+  ``` shell
   cp config/*.conf /etc/nginx/conf.d/
+  ```
+
+- Restart NGINX service
+
+  ```shell
   systemctl restart nginx
   ```

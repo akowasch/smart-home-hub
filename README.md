@@ -12,6 +12,8 @@ Smart Home Hub based on CentOS, Podman and Let's Encrypt
   - ToDo:[ioBrokekr](podman/iobrokker)
   - [Node-RED](podman/node-red)
   - ToDo: [openHAB](podman/openhab)
+- [Additional](additional)
+  - [HomeMatic CCU3](additional/homematic-ccu3)
 
 ## Links
 
@@ -25,3 +27,4 @@ Smart Home Hub based on CentOS, Podman and Let's Encrypt
 - <https://github.com/NRCHKB/node-red-contrib-homekit-docker>
 - <https://github.com/NRCHKB/node-red-contrib-homekit-docker/blob/master/.docker/Dockerfile.alpine>
 - <https://github.com/node-red/node-red-docker/blob/master/.docker/Dockerfile.alpine>
+- <https://discourse.nodered.org/t/node-red-server-with-nginx-reverse-proxy-howto-guide/27397>
