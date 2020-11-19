@@ -3,7 +3,9 @@
 Smart Home Hub based on CentOS, Podman and Let's Encrypt
 
 - [CentOS](centos)
-- [Let's Encrypt](centos/lets-encrypt)
+  - [Podman](centos/podman)
+  - [ACME](centos/acme)
+  - [NGINX](centos/nginx)
 - [Podman](podman)
   - [Home Assistant](podman/home-assistant)
   - [Homebridge](podman/homebridge)
