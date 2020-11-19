@@ -1,10 +1,9 @@
 # Node-RED
 
-- Create node-red volumes for data and certs
+- Create node-red volumes for data
 
   ``` shell
   podman volume create node_red_user_data
-  podman volume create node_red_user_certs
   ```
 
 - Build the container
@@ -23,7 +22,6 @@
     -p 2049:2049 \
     -p 3456:3456 \
     -v node_red_data:/data \
-    -v node_red_certs:/certs \
     --net host \
     --tz=local \
     --name node-red \
@@ -56,35 +54,32 @@
   firewall-cmd --reload
   ```
 
-- Copy Let's Encrypt certificates (see [Let's Encrypt](../../centos/lets-encrypt) section)
+- Generate password hash
 
   ``` shell
-  podman cp .acme.sh/kowasch.cloud/kowasch.cloud.key node-red:/certs/
-  podman cp .acme.sh/kowasch.cloud/fullchain.cer node-red:/certs/
+  podman exec -it node-red /bin/bash
+  npx node-red admin hash-pw
   ```
 
-- Edit settings.js file
+- Configure authentication
 
   ``` shell
   podman exec -it node-red /bin/bash
   vi settings.js
   ```
 
-  ``` js
-  https: function() {
-      return {
-          key: require("fs").readFileSync('/certs/kowasch.cloud.key'),
-          cert: require("fs").readFileSync('/certs/fullchain.cer')
-      }
+  ``` shell
+  adminAuth: {
+      type: "credentials",
+      users: [
+          {
+              username: "Admin",
+              password: "<YOUR_PASSWORD_HASH>",
+              permissions: "*"
+          },
+      ]
   },
-
-  httpsRefreshInterval : 24,
   ```
-
-## ToDo
-
-- Authentication
-- Hardening
 
 ## List of Useful Plugins
 
