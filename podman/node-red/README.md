@@ -21,6 +21,8 @@
     -p 2048:2048 \
     -p 2049:2049 \
     -p 3456:3456 \
+    -p 5353:5353 \
+    -p 51826:51826 \
     -v node_red_data:/data \
     --net host \
     --tz=local \
@@ -51,6 +53,9 @@
   firewall-cmd --permanent --zone=public --add-port=2049/tcp
   # node-red - plugin - alexa
   firewall-cmd --permanent --zone=public --add-port=3456/tcp
+  # node-red - plugin - homekit - 5353
+  firewall-cmd --permanent --zone=public --add-service=mdns
+  firewall-cmd --permanent --zone=public --add-port=51826/tcp
   firewall-cmd --reload
   ```
 

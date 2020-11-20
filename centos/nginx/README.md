@@ -26,10 +26,16 @@
   firewall-cmd --reload
   ```
 
+- Configure domain property
+
+``` shell
+export DOMAIN='<YOUR_DOMAIN>'
+```
+
 - Copy ssl certificates (see [ACME](../acme) section)
 
   ``` shell
-  acme.sh -i -d '<YOUR_DOMAIN>' \
+  acme.sh -i -d "${DOMAIN}" \
     --key-file /etc/nginx/key.pem \
     --fullchain-file /etc/nginx/cert.pem \
     --reloadcmd 'service nginx force-reload'

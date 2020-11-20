@@ -14,16 +14,17 @@ curl https://get.acme.sh | sh
 acme.sh --upgrade --auto-upgrade
 ```
 
-- Set Cloudflare properties
+- Configure domain and dns provider properties
 
 ``` shell
 export CF_Token='<YOUR_CF_TOKEN>'
 export CF_Account_ID='<YOUR_CF_ACCOUNT_ID>'
 export CF_Zone_ID='<YOUR_CF_ZONE_ID>'
+export DOMAIN='<YOUR_DOMAIN>'
 ```
 
 - Generate certificates (renewed automatically)
 
 ``` shell
-acme.sh --issue --dns dns_cf -d '<YOUR_DOMAIN>' -d '*.<YOUR_DOMAIN>'
+acme.sh --issue --dns dns_cf -d "${DOMAIN}" -d "*.${DOMAIN}"
 ```
