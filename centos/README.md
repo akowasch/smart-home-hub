@@ -4,50 +4,65 @@
 
 ## Configuration
 
-``` shell
-hostnamectl set-hostname server
+- Configure hostname
 
-dnf upgrade
+  ``` shell
+  hostnamectl set-hostname server
+  ```
 
-dnf -y install epel-release
-dnf -y install bind-utils
-dnf -y install net-tools
-dnf -y install wget
-dnf -y install tree
-dnf -y install tar
-dnf -y install dnf-automatic
-```
+- Upgrade installed packages
 
-``` shell
-vi /etc/dnf/automatic.conf
-```
+  ``` shell
+  dnf upgrade
+  ```
 
-``` text
-[commands]
-upgrade_type = security
-apply_updates = yes
-```
+- Install required and useful packages
 
-``` shell
-systemctl enable --now dnf-automatic.timer
-systemctl list-timers *dnf-*
-```
+  ``` shell
+  dnf -y install epel-release
+  dnf -y install bind-utils
+  dnf -y install net-tools
+  dnf -y install wget
+  dnf -y install tree
+  dnf -y install tar
+  dnf -y install dnf-automatic
+  ```
 
-``` shell
-VERSION=3.4.1
-wget "https://github.com/mikefarah/yq/releases/download/${VERSION}/yq_linux_amd64" -O /usr/bin/yq && chmod +x /usr/bin/yq
-```
+  ``` shell
+  VERSION=3.4.1
+  wget "https://github.com/mikefarah/yq/releases/download/${VERSION}/yq_linux_amd64" -O /usr/local/bin/yq
+  chmod +x /usr/local/bin/yq
+  ```
 
-``` shell
-vi /etc/systemd/logind.conf
-```
+- Configure automated security updates
 
-``` text
-HandleLidSwitch=ignore
-HandleLidSwitchExternalPower=ignore
-HandleLidSwitchDocked=ignore
-```
+  ``` shell
+  vi /etc/dnf/automatic.conf
+  ```
 
-``` shell
-systemctl restart systemd-logind.service
-```
+  ``` text
+  [commands]
+  upgrade_type = security
+  apply_updates = yes
+  ```
+
+  ``` shell
+  systemctl enable --now dnf-automatic.timer
+  systemctl list-timers *dnf-*
+  ```
+
+- Prevent laptop from entering hibernate/suspend mode when the lid is closed.
+
+  ``` shell
+  vi /etc/systemd/logind.conf
+  ```
+
+  ``` text
+  HandleLidSwitch=ignore
+  HandleLidSwitchExternalPower=ignore
+  HandleLidSwitchDocked=ignore
+  ```
+
+  ``` shell
+  systemctl restart systemd-logind.service
+  ```
