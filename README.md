@@ -13,7 +13,8 @@ Smart Home Hub based on CentOS, Podman and Let's Encrypt
   - [Node-RED](podman/node-red)
   - ToDo: [openHAB](podman/openhab)
 - [Additional](additional)
-  - [HomeMatic CCU3](additional/homematic-ccu3)
+  - [Root-CA](additional/root-ca)
+  - [HomeMatic](additional/homematic)
 
 ## Links
 
