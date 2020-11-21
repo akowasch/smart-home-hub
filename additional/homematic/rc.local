@@ -1,5 +1,0 @@
-#!/bin/sh
-pkill hss_led
-echo none >/sys/class/leds/rpi_rf_mod\:blue/trigger
-echo none >/sys/class/leds/rpi_rf_mod\:green/trigger
-echo none >/sys/class/leds/rpi_rf_mod\:red/trigger
