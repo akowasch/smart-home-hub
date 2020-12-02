@@ -66,3 +66,20 @@
   ``` shell
   systemctl restart systemd-logind.service
   ```
+
+- Copy public SSH key for authorization
+
+  ``` shell
+  mkdir -p ~/.ssh
+  cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+  ```
+
+- Disable password based SSH login
+
+  ``` shell
+  vi /etc/ssh/sshd_config
+  ```
+
+  ``` text
+  PasswordAuthentication no
+  ```
