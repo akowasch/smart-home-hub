@@ -6,36 +6,32 @@
   podman volume create node_red_user_data
   ```
 
-- Build the container
+- Optional: Build your own image
 
   ``` shell
-  podman build -t node-red .
+  podman build -t node-red podman/node-red
   ```
 
-- Run the image
+- Create the container
 
   ``` shell
   podman run \
-    -d \
-    -p 1880:1880 \
-    -p 2048:2048 \
-    -p 2049:2049 \
-    -p 3456:3456 \
-    -p 5353:5353 \
-    -p 51826:51826 \
-    -v node_red_data:/data \
+    --detach \
+    --volume node_red_data:/data \
     --net host \
-    --tz=local \
+    --tz local \
+    --pull always \
+    --replace \
     --name node-red \
-    -h node-red \
+    --hostname node-red \
     nodered/node-red:latest-12
   ```
 
 - Generate systemd service
 
   ``` shell
-  podman generate systemd --name node-red --new --restart-policy always
-  mv container-node-red.service /etc/systemd/system/
+  podman generate systemd --name node-red --new --files
+  mv -f container-node-red.service /etc/systemd/system/
   restorecon /etc/systemd/system/container-node-red.service
   systemctl daemon-reload
   systemctl enable container-node-red
@@ -75,14 +71,14 @@
 
   ``` shell
   adminAuth: {
-      type: "credentials",
-      users: [
-          {
-              username: "Admin",
-              password: "<YOUR_PASSWORD_HASH>",
-              permissions: "*"
-          },
-      ]
+    type: "credentials",
+    users: [
+      {
+        username: "Admin",
+        password: "<YOUR_PASSWORD_HASH>",
+        permissions: "*"
+      },
+    ]
   },
   ```
 
