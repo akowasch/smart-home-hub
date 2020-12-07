@@ -1,5 +1,11 @@
 # Podman
 
+- Configure environment
+
+  ``` shell
+  export HOST_IF='<YOUR_INTERFASCE>'
+  ```
+
 - Use latest container-tools
 
   ``` shell
@@ -36,4 +42,20 @@
 
   ``` shell
   dnf -y install skopeo
+  ```
+
+- Create cni configuration
+
+  ``` shell
+  cp podman/host-local-bridge.conflist /etc/cni/net.d/
+  ```
+
+- Create network bridge
+
+  ``` shell
+  nmcli con add type bridge con-name br0 ifname br0
+  nmcli con mod br0 ipv4.method auto
+  nmcli con del "${HOST_IF}"
+  nmcli con add type bridge-slave con-name "${HOST_IF}" ifname "${HOST_IF}" master br0
+  nmcli con up br0
   ```

@@ -3,9 +3,7 @@
 - Configure environment
 
   ``` shell
-  export HOST_IF='<YOUR_INTERFACE>'
   export HOST_IP='<YOUR_IP>'
-  export HOST_PORT='<YOUR_PORT>'
   export DOMAIN='<YOUR_DOMAIN>'
   ```
 
@@ -23,7 +21,8 @@
     --detach \
     --volume pi_hole_etc_pihole:/etc/pihole \
     --volume pi_hole_etc_dnsmasq:/etc/dnsmasq.d \
-    --net host \
+    --net host_local_bridge \
+    --ip 192.168.42.131 \
     --tz local \
     --pull always \
     --replace \
@@ -33,8 +32,6 @@
     --env "DNS2=8.8.4.4" \
     --env "ServerIP=${HOST_IP}" \
     --env "VIRTUAL_HOST=pi-hole.${DOMAIN}" \
-    --env "WEB_PORT=${HOST_PORT}" \
-    --env "INTERFACE=${HOST_IF}" \
     --env "DNSMASQ_LISTENING=all" \
     --env "WEBUIBOXEDLAYOUT=traditional" \
     --name pi-hole \
@@ -62,7 +59,7 @@
   restorecon /etc/systemd/system/container-pi-hole.service
   systemctl daemon-reload
   systemctl enable container-pi-hole
-  systemctl start container-pi-hole
+  systemctl restart container-pi-hole
   ```
 
 - Configure firewall

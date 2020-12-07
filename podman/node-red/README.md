@@ -18,7 +18,8 @@
   podman run \
     --detach \
     --volume node_red_data:/data \
-    --net host \
+    --net host_local_bridge \
+    --ip 192.168.42.130 \
     --tz local \
     --pull always \
     --replace \
@@ -35,14 +36,12 @@
   restorecon /etc/systemd/system/container-node-red.service
   systemctl daemon-reload
   systemctl enable container-node-red
-  systemctl start container-node-red
+  systemctl restart container-node-red
   ```
 
 - Configure firewall
 
   ``` shell
-  # node-red - ui
-  firewall-cmd --permanent --zone=public --add-port=1880/tcp
   # node-red - plugin - ccu - BINRPC
   firewall-cmd --permanent --zone=public --add-port=2048/tcp
   # node-red - plugin - ccu - XMLRPC

@@ -83,3 +83,20 @@
   ``` text
   PasswordAuthentication no
   ```
+
+- Enable logging for firewalld
+
+  ``` shell
+  firewall-cmd --set-log-denied=all
+  journalctl -f -l -u firewalld
+  ```
+
+- Disable zone drifting for firewalld
+
+  ``` shell
+  vi /etc/firewalld/firewalld.conf
+  ```
+
+  ``` text
+  AllowZoneDrifting=no
+  ```

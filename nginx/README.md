@@ -22,7 +22,7 @@
 - Configure firewall to allow https
 
   ``` shell
-  firewall-cmd --permanent --add-service=https
+  firewall-cmd --permanent --zone=public --add-service=https
   firewall-cmd --reload
   ```
 
