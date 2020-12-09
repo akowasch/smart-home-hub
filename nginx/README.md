@@ -34,7 +34,7 @@
 
   ``` shell
   export DOMAIN='<YOUR_DOMAIN>'
-  export PI_HOLE_HOST_PORT='<YOUR_PI_HOLE_HOST_PORT>'
+  export PI_HOLE_PORT='<YOUR_PI_HOLE_PORT>'
   ```
 
   ``` shell

@@ -1,7 +1,7 @@
 server {
     listen                     443 ssl http2;
     listen                     [::]:443 ssl http2;
-    server_name                pi-hole.${DOMAIN};
+    server_name                iobroker.${DOMAIN};
 
     ssl_certificate            cert.pem;
     ssl_certificate_key        key.pem;
@@ -10,7 +10,7 @@ server {
     ssl_dhparam                /etc/nginx/dhparam.pem;
 
     location / {
-        proxy_pass             http://localhost:${PI_HOLE_PORT};
+        proxy_pass             http://localhost:${IOBROKER_ADMIN_PORT};
 
         # Defines the HTTP protocol version for proxying
         # by default it it set to 1.0.

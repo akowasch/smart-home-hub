@@ -3,7 +3,7 @@
 - Create node-red volumes for data
 
   ``` shell
-  podman volume create node_red_user_data
+  podman volume create node_red_data
   ```
 
 - Optional: Build your own image

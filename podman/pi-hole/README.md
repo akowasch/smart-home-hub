@@ -9,7 +9,7 @@
   ``` shell
   export HOST_IF='<YOUR_INTERFACE>'
   export HOST_IP='<YOUR_IP>'
-  export PI_HOLE_HOST_PORT='<YOUR_PI_HOLE_PORT>'
+  export PI_HOLE_PORT='<YOUR_PI_HOLE_PORT>'
   export DOMAIN='<YOUR_DOMAIN>'
   ```
 
@@ -41,7 +41,7 @@
     --env "DNS2=8.8.4.4" \
     --env "ServerIP=${HOST_IP}" \
     --env "VIRTUAL_HOST=pi-hole.${DOMAIN}" \
-    --env "WEB_PORT=${PI_HOLE_HOST_PORT}" \
+    --env "WEB_PORT=${PI_HOLE_PORT}" \
     --env "INTERFACE=${HOST_IF}" \
     --env "DNSMASQ_LISTENING=all" \
     --env "WEBUIBOXEDLAYOUT=traditional" \
