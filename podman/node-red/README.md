@@ -18,8 +18,7 @@
   podman run \
     --detach \
     --volume node_red_data:/data \
-    --net host_local_bridge \
-    --ip 192.168.42.130 \
+    --net host \
     --tz local \
     --pull always \
     --replace \
@@ -71,13 +70,11 @@
   ``` shell
   adminAuth: {
     type: "credentials",
-    users: [
-      {
-        username: "Admin",
-        password: "<YOUR_PASSWORD_HASH>",
-        permissions: "*"
-      },
-    ]
+    users: [{
+      username: "Admin",
+      password: "<YOUR_PASSWORD_HASH>",
+      permissions: "*"
+    }]
   },
   ```
 
@@ -93,7 +90,6 @@
   - node-red-node-ui-table
 
 - Homekit plugins
-  - redmatic-homekit
   - node-red-contrib-homekit-bridged
 
 - HomeMatik plugins

@@ -1,11 +1,5 @@
 # Podman
 
-- Configure environment
-
-  ``` shell
-  export HOST_IF='<YOUR_INTERFASCE>'
-  ```
-
 - Use latest container-tools
 
   ``` shell
@@ -42,6 +36,22 @@
 
   ``` shell
   dnf -y install skopeo
+  ```
+
+## Optional use of separated container ips
+
+- Configure environment
+
+  ``` shell
+  vi podman/.env
+  ```
+
+  ``` shell
+  export HOST_IF='<YOUR_INTERFACE>'
+  ```
+
+  ``` shell
+  source podman/.env
   ```
 
 - Create cni configuration

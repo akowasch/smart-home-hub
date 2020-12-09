@@ -28,9 +28,18 @@
 
 - Configure domain property
 
-``` shell
-export DOMAIN='<YOUR_DOMAIN>'
-```
+  ``` shell
+  vi nginx/.env
+  ```
+
+  ``` shell
+  export DOMAIN='<YOUR_DOMAIN>'
+  export PI_HOLE_HOST_PORT='<YOUR_PI_HOLE_HOST_PORT>'
+  ```
+
+  ``` shell
+  source nginx/.env
+  ```
 
 - Copy ssl certificates (see [ACME](../acme) section)
 
@@ -62,7 +71,8 @@ export DOMAIN='<YOUR_DOMAIN>'
 - Copy NGINX configs (see <https://nginx.org/en/docs/>)
 
   ``` shell
-  cp config/*.conf /etc/nginx/conf.d/
+  envsubst < nginx/config/pi-hole.conf.tpl > /etc/nginx/conf.d/pi-hole.conf
+  envsubst < nginx/config/node-red.conf.tpl > /etc/nginx/conf.d/node-red.conf
   ```
 
 - Restart NGINX service

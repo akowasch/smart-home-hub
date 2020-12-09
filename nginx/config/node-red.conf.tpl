@@ -1,7 +1,7 @@
 server {
     listen                     443 ssl http2;
     listen                     [::]:443 ssl http2;
-    server_name                node-red.<YOUR_DOMAIN>;
+    server_name                node-red.${DOMAIN};
 
     ssl_certificate            cert.pem;
     ssl_certificate_key        key.pem;
@@ -10,7 +10,7 @@ server {
     ssl_dhparam                /etc/nginx/dhparam.pem;
 
     location / {
-        proxy_pass             http://192.168.42.130:1880;
+        proxy_pass             http://localhost:1880;
 
         # Defines the HTTP protocol version for proxying
         # by default it it set to 1.0.

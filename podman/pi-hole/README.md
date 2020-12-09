@@ -3,8 +3,18 @@
 - Configure environment
 
   ``` shell
+  vi podman/pi-hole/.env
+  ```
+
+  ``` shell
+  export HOST_IF='<YOUR_INTERFACE>'
   export HOST_IP='<YOUR_IP>'
+  export PI_HOLE_HOST_PORT='<YOUR_PI_HOLE_PORT>'
   export DOMAIN='<YOUR_DOMAIN>'
+  ```
+
+  ``` shell
+  source podman/pi-hole/.env
   ```
 
 - Create node-red volumes for data
@@ -21,8 +31,7 @@
     --detach \
     --volume pi_hole_etc_pihole:/etc/pihole \
     --volume pi_hole_etc_dnsmasq:/etc/dnsmasq.d \
-    --net host_local_bridge \
-    --ip 192.168.42.131 \
+    --net host \
     --tz local \
     --pull always \
     --replace \
@@ -32,6 +41,8 @@
     --env "DNS2=8.8.4.4" \
     --env "ServerIP=${HOST_IP}" \
     --env "VIRTUAL_HOST=pi-hole.${DOMAIN}" \
+    --env "WEB_PORT=${PI_HOLE_HOST_PORT}" \
+    --env "INTERFACE=${HOST_IF}" \
     --env "DNSMASQ_LISTENING=all" \
     --env "WEBUIBOXEDLAYOUT=traditional" \
     --name pi-hole \
