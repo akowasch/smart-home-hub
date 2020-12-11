@@ -46,7 +46,11 @@
 - Generate systemd service
 
   ``` shell
-  podman generate systemd --name iobroker --new --files
+  podman generate systemd \
+    --name iobroker \
+    --new \
+    --files \
+    --restart-policy=always
   mv -f container-iobroker.service /etc/systemd/system/
   restorecon /etc/systemd/system/container-iobroker.service
   systemctl daemon-reload

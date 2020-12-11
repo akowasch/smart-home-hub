@@ -30,7 +30,11 @@
 - Generate systemd service
 
   ``` shell
-  podman generate systemd --name node-red --new --files
+  podman generate systemd \
+    --name node-red \
+    --new \
+    --files \
+    --restart-policy=always
   mv -f container-node-red.service /etc/systemd/system/
   restorecon /etc/systemd/system/container-node-red.service
   systemctl daemon-reload

@@ -32,6 +32,7 @@
     --replace \
     --env "HOMEBRIDGE_CONFIG_UI=1" \
     --env "HOMEBRIDGE_CONFIG_UI_PORT=${HOMEBRIDGE_PORT}" \
+    --env "PACKAGES=homebridge-hue"
     --name homebridge \
     --hostname homebridge \
     oznu/homebridge:latest
@@ -40,7 +41,11 @@
 - Generate systemd service
 
   ``` shell
-  podman generate systemd --name homebridge --new --files
+  podman generate systemd \
+    --name homebridge \
+    --new \
+    --files \
+    --restart-policy=always
   mv -f container-homebridge.service /etc/systemd/system/
   restorecon /etc/systemd/system/container-homebridge.service
   systemctl daemon-reload
@@ -56,3 +61,8 @@
   firewall-cmd --permanent --zone=public --add-port=53687/udp
   firewall-cmd --reload
   ```
+
+## Useful plugins
+
+- homebridge-xiaomi-roborock-vacuum
+- homebridge-ring

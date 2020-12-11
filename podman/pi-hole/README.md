@@ -65,7 +65,11 @@
 - Generate systemd service
 
   ``` shell
-  podman generate systemd --name pi-hole --new --files
+  podman generate systemd \
+    --name pi-hole \
+    --new \
+    --files \
+    --restart-policy=always
   mv -f container-pi-hole.service /etc/systemd/system/
   restorecon /etc/systemd/system/container-pi-hole.service
   systemctl daemon-reload
