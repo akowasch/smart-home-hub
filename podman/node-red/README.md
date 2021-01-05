@@ -64,7 +64,7 @@
   npx node-red admin hash-pw
   ```
 
-- Configure authentication
+- Configure authentication and storage
 
   ``` shell
   podman exec -it node-red /bin/bash
@@ -79,6 +79,16 @@
       password: "<YOUR_PASSWORD_HASH>",
       permissions: "*"
     }]
+  },
+  ...
+  contextStorage: {
+    default: {
+      module: "localfilesystem",
+      config: {
+        dir: "/data",
+        flushInterval: 10
+      }
+    }
   },
   ```
 
