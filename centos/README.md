@@ -26,6 +26,7 @@
   dnf -y install tree
   dnf -y install tar
   dnf -y install dnf-automatic
+  dnf -y install git
   ```
 
   ``` shell
