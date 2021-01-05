@@ -92,3 +92,9 @@
   ``` shell
   podman exec -it pi-hole pihole -g
   ```
+
+- Optional: Add custom addlists
+
+  ``` shell
+  podman cp podman/pi-hole/adlists.list pi-hole:/etc/pihole/adlists.list
+  ```
