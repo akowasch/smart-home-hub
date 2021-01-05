@@ -66,3 +66,9 @@
 
 - homebridge-xiaomi-roborock-vacuum
 - homebridge-ring
+- homebridge-camera-ffmpeg
+- homebridge-ifttt
+- homebridge-webos-tv
+- homebridge-homematic
+- homebridge-homeconnect
+- homebridge-twinkly
