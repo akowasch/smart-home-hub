@@ -101,3 +101,9 @@
   ``` text
   AllowZoneDrifting=no
   ```
+
+- Configure git behaviour
+
+  ``` shell
+  git config --global pull.ff only
+  ```
