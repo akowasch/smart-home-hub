@@ -107,3 +107,18 @@
   ``` shell
   git config --global pull.ff only
   ```
+
+- Disable IPv6
+
+  ``` shell
+  vi /etc/sysctl.d/70-ipv6.conf
+  ```
+
+  ``` text
+  net.ipv6.conf.all.disable_ipv6 = 1
+  net.ipv6.conf.default.disable_ipv6 = 1
+  ```
+
+  ``` shell
+  sysctl --load /etc/sysctl.d/70-ipv6.conf
+  ```
