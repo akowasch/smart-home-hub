@@ -32,7 +32,6 @@
     --volume pi_hole_etc_pihole:/etc/pihole \
     --volume pi_hole_etc_dnsmasq:/etc/dnsmasq.d \
     --net host \
-    --tz local \
     --pull always \
     --replace \
     --dns 127.0.0.1 \
@@ -45,9 +44,10 @@
     --env "INTERFACE=${HOST_IF}" \
     --env "DNSMASQ_LISTENING=all" \
     --env "WEBUIBOXEDLAYOUT=traditional" \
+    --env "TZ=Europe/Berlin" \
     --name pi-hole \
     --hostname pi-hole \
-    pihole/pihole:latest
+    docker.io/pihole/pihole:latest
   ```
 
 - Get random generated password

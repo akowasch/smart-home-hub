@@ -19,12 +19,12 @@
     --detach \
     --volume node_red_data:/data \
     --net host \
-    --tz local \
     --pull always \
     --replace \
+    --env "TZ=Europe/Berlin" \
     --name node-red \
     --hostname node-red \
-    nodered/node-red:latest-12
+    docker.io/nodered/node-red:latest-12
   ```
 
 - Generate systemd service

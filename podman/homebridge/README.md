@@ -27,15 +27,15 @@
     --detach \
     --volume homebridge_homebridge:/homebridge \
     --net host \
-    --tz local \
     --pull always \
     --replace \
     --env "HOMEBRIDGE_CONFIG_UI=1" \
     --env "HOMEBRIDGE_CONFIG_UI_PORT=${HOMEBRIDGE_PORT}" \
-    --env "PACKAGES=homebridge-hue"
+    --env "PACKAGES=homebridge-hue" \
+    --env "TZ=Europe/Berlin" \
     --name homebridge \
     --hostname homebridge \
-    oznu/homebridge:latest
+    docker.io/oznu/homebridge:latest
   ```
 
 - Generate systemd service
