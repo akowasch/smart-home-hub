@@ -24,7 +24,7 @@
     --env "TZ=Europe/Berlin" \
     --name node-red \
     --hostname node-red \
-    docker.io/nodered/node-red:latest-12
+    docker.io/nodered/node-red:latest-16
   ```
 
 - Generate systemd service
